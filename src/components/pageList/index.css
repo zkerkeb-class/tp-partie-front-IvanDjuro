@@ -1,0 +1,80 @@
+.page-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+
+.page-list button {
+  min-width: 44px;
+  height: 44px;
+  padding: 0 14px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.page-list button:hover:not(:disabled) {
+  border-color: #4a9eff;
+  background: rgba(74, 158, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
+}
+
+.page-list button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.page-list button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.page-list button.active {
+  background: linear-gradient(135deg, #4a9eff 0%, #357abd 100%);
+  color: white;
+  border-color: #4a9eff;
+  box-shadow: 0 4px 16px rgba(74, 158, 255, 0.5);
+}
+
+.page-list button.active:hover {
+  background: linear-gradient(135deg, #357abd 0%, #2a5f99 100%);
+  transform: translateY(-2px);
+}
+
+.page-list .nav-button {
+  font-weight: 700;
+}
+
+.page-list .dots {
+  padding: 0 8px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .page-list button {
+    min-width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+  
+  .page-list {
+    gap: 4px;
+  }
+}

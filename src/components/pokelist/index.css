@@ -1,5 +1,23 @@
-.poke-list{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px 8px;
+.poke-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.controls-top {
+  margin-bottom: 24px;
+}
+
+.poke-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.loading {
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 60px 20px;
 }

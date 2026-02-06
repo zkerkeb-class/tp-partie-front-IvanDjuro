@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import HeaderCard from "../headerCard";
 import StatCard from "../statCard";
+import TypesCard from "../typesCard";
 import "./index.css"
 
 const PokeCard = ({ pokemon }) => {
@@ -20,16 +21,9 @@ const PokeCard = ({ pokemon }) => {
                 <div className="poke-image-container">
                     <img src={pokemon.image} alt={pokemon.name} className="poke-image" />
                 </div>
-
-                {/* Types */}
-                <div className="poke-types">
-                    {pokemon.type.map(type => (
-                        <span key={type} className="type-badge">
-                            {type}
-                        </span>
-                    ))}
-                </div>
                 
+                <TypesCard types={pokemon.type}/>
+
                 <StatCard pokemon={pokemon} />
             </div>
         </div>
