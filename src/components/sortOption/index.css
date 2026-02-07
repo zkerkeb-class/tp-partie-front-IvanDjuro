@@ -1,0 +1,60 @@
+/* Sort buttons */
+.sort-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 8px;
+}
+
+.sort-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.sort-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #4a9eff;
+  transform: translateY(-2px);
+}
+
+.sort-btn.active {
+  background: linear-gradient(135deg, #4a9eff 0%, #357abd 100%);
+  border-color: #4a9eff;
+  box-shadow: 0 4px 12px rgba(74, 158, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+  .language-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .lang-btn {
+    min-width: auto;
+  }
+  
+  .filter-inputs {
+    flex-direction: column;
+  }
+  
+  .filter-input,
+  .filter-select {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .sort-buttons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
