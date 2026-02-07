@@ -1,0 +1,127 @@
+/* Carte principale */
+.poke-card {
+    width: 300px;
+    height: 420px;
+    
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    display: flex;
+    
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.poke-card:hover {
+    transform: translateY(-8px);
+}
+
+
+/* Backgrounds par type */
+.type-fire {
+    background-image: url("http://localhost:3000/assets/background/fire.png");
+}
+
+.type-water {
+    background-image: url("http://localhost:3000/assets/background/water.png");
+}
+
+.type-grass {
+    background-image: url("http://localhost:3000/assets/background/grass.png");
+}
+
+.type-electric {
+    background-image: url("http://localhost:3000/assets/background/electric.png");
+}
+
+.type-normal {
+    background-image: url("http://localhost:3000/assets/background/normal.png");
+}
+
+.type-psychic {
+    background-image: url("http://localhost:3000/assets/background/psychic.png");
+}
+
+.type-ice {
+    background-image: url("http://localhost:3000/assets/background/ice.png");
+}
+
+.type-dragon {
+    background-image: url("http://localhost:3000/assets/background/dragon.png");
+}
+
+.type-dark {
+    background-image: url("http://localhost:3000/assets/background/dark.png");
+}
+
+.type-fairy {
+    background-image: url("http://localhost:3000/assets/background/fairy.png");
+}
+
+.type-fighting {
+    background-image: url("http://localhost:3000/assets/background/fighting.png");
+}
+
+.type-flying {
+    background-image: url("http://localhost:3000/assets/background/flying.png");
+}
+
+.type-poison {
+    background-image: url("http://localhost:3000/assets/background/poison.png");
+}
+
+.type-ground {
+    background-image: url("http://localhost:3000/assets/background/ground.png");
+}
+
+.type-rock {
+    background-image: url("http://localhost:3000/assets/background/rock.png");
+}
+
+.type-bug {
+    background-image: url("http://localhost:3000/assets/background/bug.png");
+}
+
+.type-ghost {
+    background-image: url("http://localhost:3000/assets/background/ghost.png");
+}
+
+.type-steel {
+    background-image: url("http://localhost:3000/assets/background/steel.png");
+}
+
+/* Contenu de la carte */
+.poke-card-content {
+    flex: 1;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    padding: 25px; 
+    padding-top: 15px;
+}
+
+
+/* Image container */
+.poke-image-container {
+    flex: 1;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    min-height: 0;
+    margin: 10px 0;
+}
+
+.poke-image {
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+

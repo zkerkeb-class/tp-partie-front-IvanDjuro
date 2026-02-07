@@ -1,25 +1,31 @@
-import { useEffect,useState } from "react";
+import { useEffect } from "react";
+import HeaderCard from "../headerCard";
+import StatCard from "../statCard";
+import TypesCard from "../typesCard";
+import "./index.css"
 
 const PokeCard = ({ pokemon }) => {
-    const [pokeState, setPokeState] = useState({});
 
     useEffect   (() => {
-        fetch(pokemon.url)
-            .then((response) => response.json())
-            .then((data) => {
-                setPokeState(data);
-                console.log("Détails du Pokémon reçus:", data);
-            })
-            .catch((error) => {
-                console.error("Erreur lors de la récupération des détails du Pokémon:", error);
-            });
+        console.log(pokemon);
+
     }, [pokemon]);
 
 
     return (
-        <div>
-            <h3>{pokeState.name}</h3>
-            <p>{pokeState.height}</p>
+        <div className={`poke-card type-${pokemon.type[0].toLowerCase()}`}>
+            <div className="poke-card-content">
+                {/* Header avec nom et ID */}
+                <HeaderCard name={pokemon.name} id={pokemon.id}/>
+                {/* Image du Pokémon */}
+                <div className="poke-image-container">
+                    <img src={pokemon.image} alt={pokemon.name} className="poke-image" />
+                </div>
+                
+                <TypesCard types={pokemon.type}/>
+
+                <StatCard pokemon={pokemon} />
+            </div>
         </div>
     );
 }

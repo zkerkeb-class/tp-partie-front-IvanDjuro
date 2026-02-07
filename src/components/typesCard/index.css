@@ -1,0 +1,33 @@
+/* Types */
+.poke-types {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 8px 0;
+}
+
+.type-badge {
+    width: 60px; /* Limite la largeur */
+    height: auto;
+    
+    /* Glassmorphism pour les images aussi */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    padding: 4px 8px;
+    
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    
+    transition: all 0.2s ease;
+}
+
+.type-badge:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.15);
+}

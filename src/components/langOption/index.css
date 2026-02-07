@@ -1,0 +1,49 @@
+.language-section,
+.filter-section,
+.sort-section {
+  margin-bottom: 16px;
+}
+
+.language-section:last-child,
+.filter-section:last-child,
+.sort-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Language buttons */
+.language-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  justify-content: center;
+  min-width: 120px;
+}
+
+.lang-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffd700;
+  transform: translateY(-2px);
+}
+
+.lang-btn.active {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  border-color: #ffd700;
+  color: #1a1a2e;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+}
