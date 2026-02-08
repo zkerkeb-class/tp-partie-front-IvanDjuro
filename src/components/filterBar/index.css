@@ -16,4 +16,28 @@
   letter-spacing: 0.5px;
 }
 
+.create-btn {
+  width: 100%;
+  margin: 10px 0 18px;
+  background: linear-gradient(135deg, #4a9eff 0%, #2563eb 100%);
+  border: 2px solid rgba(74, 158, 255, 0.8);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 10px rgba(74, 158, 255, 0.25);
+}
+
+.create-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(74, 158, 255, 0.45);
+}
+
+.create-btn:active {
+  transform: translateY(0);
+}
+
 

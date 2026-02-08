@@ -1,14 +1,16 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import usePokemonCreator from "../hooks/usePokemonCreator.jsx";
 import NavigationBar from "../components/navigationBar";
 import ErrorMessage from "../components/errorMessage";
 import CreatePokemonForm from "../components/createPokemonForm";
 import PokeCard from "../components/pokeCard/index.jsx";
+import { t } from "../i18n/ui.js";
 import "./createPokemon.css";
 
 const CreatePokemon = () => {
     const navigate = useNavigate();
-    
+    const { lang } = useParams();
+
     const {
         newPokemon,
         isSaving,
@@ -23,21 +25,19 @@ const CreatePokemon = () => {
         removeType,
         createPokemon,
         resetForm
-    } = usePokemonCreator(navigate);
+    } = usePokemonCreator(navigate, lang);
 
-    const goBack = () => navigate("/");
+    const goBack = () => navigate(-1);
 
-    // Liste de tous les types possibles
     const allTypes = [
         "Normal", "Fire", "Water", "Electric", "Grass", "Ice", 
         "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", 
         "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy"
     ];
 
-    // Préparer le Pokémon pour la preview de la carte
     const previewPokemon = {
-        id: 0, // ID temporaire pour la preview
-        name: newPokemon.name.french || 'Nouveau Pokémon',
+        id: 0,
+        name: (newPokemon.name?.[lang] || newPokemon.name?.french || newPokemon.name?.english || t(lang, "newPokemonFallback")),
         type: newPokemon.type,
         base: newPokemon.base,
         image: newPokemon.image || 'http://localhost:3000/assets/pokemons/0.png'
@@ -45,8 +45,8 @@ const CreatePokemon = () => {
 
     return (
         <div className="create-pokemon-page">
-            {/* Barre de navigation */}
             <NavigationBar
+                language={lang}
                 isEditing={true}
                 isSaving={isSaving}
                 onBack={goBack}
@@ -56,25 +56,22 @@ const CreatePokemon = () => {
                 onCancel={goBack}
             />
 
-            {/* Message d'erreur */}
             <ErrorMessage message={error} />
 
-            {/* Layout principal : Carte à gauche (1/3) + Formulaire à droite (2/3) */}
             <div className="details-layout">
-                {/* GAUCHE : Carte Pokémon (preview) */}
                 <div className="card-preview-section">
                     <PokeCard 
                         pokemon={previewPokemon} 
-                        language="french"
+                        language={lang}
                     />
                     <div className="preview-hint">
-                        👁️ Prévisualisation en temps réel
+                        {t(lang, "previewHint")}
                     </div>
                 </div>
 
-                {/* DROITE : Formulaire de création */}
                 <div className="edit-panel-section">
                     <CreatePokemonForm
+                        language={lang}
                         newPokemon={newPokemon}
                         allTypes={allTypes}
                         onNameChange={updateName}

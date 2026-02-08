@@ -6,13 +6,14 @@ import ErrorMessage from "../components/errorMessage";
 import InfoPanel from "../components/infoPanel";
 import EditPanel from "../components/editPanel";
 import PokeCard from "../components/pokeCard";
+import { t } from "../i18n/ui.js";
 import "./pokemonDetails.css";
 
 const PokemonDetails = () => {
     const params = useParams();
     const navigate = useNavigate();
     const { pokeState, loading, setPokemonData } = usePokemon(params.id, params.lang);
-    
+
     const {
         isEditing,
         editedPokemon,
@@ -32,18 +33,16 @@ const PokemonDetails = () => {
 
     const goBack = () => navigate(-1);
 
-    // Liste de tous les types possibles
     const allTypes = [
         "Normal", "Fire", "Water", "Electric", "Grass", "Ice", 
         "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", 
         "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy"
     ];
 
-    // États de chargement et erreur
     if (loading) {
         return (
             <div className="loading-container">
-                <p>Chargement des données du Pokémon...</p>
+                <p>{t(params.lang, "loadingDetails")}</p>
             </div>
         );
     }
@@ -51,16 +50,16 @@ const PokemonDetails = () => {
     if (!pokeState || !pokeState.name) {
         return (
             <div className="error-container">
-                <p>Pokémon introuvable.</p>
-                <button onClick={goBack} className="btn-back">Retour</button>
+                <p>{t(params.lang, "notFound")}</p>
+                <button onClick={goBack} className="btn-back">{t(params.lang, "back")}</button>
             </div>
         );
     }
 
     return (
         <div className="pokemon-details-page">
-            {/* Barre de navigation */}
             <NavigationBar
+                language={params.lang}
                 isEditing={isEditing}
                 isSaving={isSaving}
                 onBack={goBack}
@@ -70,12 +69,9 @@ const PokemonDetails = () => {
                 onCancel={cancelEditing}
             />
 
-            {/* Message d'erreur */}
             <ErrorMessage message={error} />
 
-            {/* Layout principal : Carte à gauche (1/3) + Édition à droite (2/3) */}
             <div className="details-layout">
-                {/* GAUCHE : Carte Pokémon (preview) */}
                 <div className="card-preview-section">
                     <PokeCard 
                         pokemon={pokeState} 
@@ -83,12 +79,12 @@ const PokemonDetails = () => {
                     />
                 </div>
 
-                {/* DROITE : Panneau d'info ou d'édition */}
                 <div className="edit-panel-section">
                     {!isEditing ? (
-                        <InfoPanel pokemon={pokeState} />
+                        <InfoPanel pokemon={pokeState} language={params.lang} />
                     ) : (
                         <EditPanel
+                            language={params.lang}
                             editedPokemon={editedPokemon}
                             allTypes={allTypes}
                             onNameChange={updateName}

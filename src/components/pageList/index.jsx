@@ -1,6 +1,7 @@
 import "./index.css";
+import { t } from "../../i18n/ui.js";
 
-const PageList = ({ pagination, onPageChange }) => {
+const PageList = ({ pagination, onPageChange, language = "french" }) => {
   if (!pagination) return null;
 
   const {
@@ -33,9 +34,9 @@ const PageList = ({ pagination, onPageChange }) => {
         onClick={() => goTo(currentPage - 1)} 
         disabled={!hasPreviousPage}
         className="nav-button"
-        aria-label="Page précédente"
+        aria-label={t(language, "ariaPrev")}
       >
-        ← Préc.
+        {t(language, "prevShort")}
       </button>
 
       {start > 1 && (
@@ -43,7 +44,7 @@ const PageList = ({ pagination, onPageChange }) => {
           <button 
             onClick={() => goTo(1)} 
             className={currentPage === 1 ? "active" : ""}
-            aria-label="Page 1"
+            aria-label={t(language, "ariaPage", 1)}
           >
             1
           </button>
@@ -57,7 +58,7 @@ const PageList = ({ pagination, onPageChange }) => {
           onClick={() => goTo(p)}
           className={p === currentPage ? "active" : ""}
           aria-current={p === currentPage ? "page" : undefined}
-          aria-label={`Page ${p}`}
+          aria-label={t(language, "ariaPage", p)}
         >
           {p}
         </button>
@@ -69,7 +70,7 @@ const PageList = ({ pagination, onPageChange }) => {
           <button
             onClick={() => goTo(totalPages)}
             className={currentPage === totalPages ? "active" : ""}
-            aria-label={`Page ${totalPages}`}
+            aria-label={t(language, "ariaPage", totalPages)}
           >
             {totalPages}
           </button>
@@ -80,9 +81,9 @@ const PageList = ({ pagination, onPageChange }) => {
         onClick={() => goTo(currentPage + 1)} 
         disabled={!hasNextPage}
         className="nav-button"
-        aria-label="Page suivante"
+        aria-label={t(language, "ariaNext")}
       >
-        Suiv. →
+        {t(language, "nextShort")}
       </button>
     </div>
   );

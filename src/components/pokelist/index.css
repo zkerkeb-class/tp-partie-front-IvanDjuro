@@ -21,3 +21,6 @@
   font-weight: 600;
   padding: 60px 20px;
 }
+
+.poke-list-item { list-style: none; }
+.poke-list-item a { text-decoration: none; color: inherit; display: block; }

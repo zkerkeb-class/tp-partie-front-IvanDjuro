@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { getLocalizedName } from "../utils/getLocalizedName.js";
+import { t } from "../i18n/ui.js";
 
 const usePokemonEditor = (pokemon, params, setPokemonData, navigate) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -7,11 +9,11 @@ const usePokemonEditor = (pokemon, params, setPokemonData, navigate) => {
     const [error, setError] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
 
-    // Démarrer l'édition
+    const lang = params?.lang || "french";
+
     const startEditing = () => {
-        const currentLang = params.lang || 'english';
         setEditedPokemon({
-            name: pokemon.name,
+            name: getLocalizedName(pokemon.name, lang),
             type: [...pokemon.type],
             base: { ...pokemon.base },
             image: pokemon.image
@@ -21,7 +23,6 @@ const usePokemonEditor = (pokemon, params, setPokemonData, navigate) => {
         setError(null);
     };
 
-    // Annuler l'édition
     const cancelEditing = () => {
         setIsEditing(false);
         setEditedPokemon(null);
@@ -29,7 +30,6 @@ const usePokemonEditor = (pokemon, params, setPokemonData, navigate) => {
         setImagePreview(null);
     };
 
-    // Mettre à jour le nom
     const updateName = (value) => {
         setEditedPokemon(prev => ({
             ...prev,
@@ -37,7 +37,6 @@ const usePokemonEditor = (pokemon, params, setPokemonData, navigate) => {
         }));
     };
 
-    // Mettre à jour une statistique
     const updateStat = (stat, value) => {
         const numValue = parseInt(value) || 0;
         setEditedPokemon(prev => ({
@@ -49,17 +48,16 @@ const usePokemonEditor = (pokemon, params, setPokemonData, navigate) => {
         }));
     };
 
-    // Upload d'image et conversion en base64
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (file) {
             if (!file.type.startsWith('image/')) {
-                setError('Veuillez sélectionner une image valide');
+                setError(t(lang, "invalidImage"));
                 return;
             }
 
             if (file.size > 5 * 1024 * 1024) {
-                setError('L\'image ne doit pas dépasser 5MB');
+                setError(t(lang, "imageTooLarge"));
                 return;
             }
 
@@ -76,7 +74,6 @@ const usePokemonEditor = (pokemon, params, setPokemonData, navigate) => {
         }
     };
 
-    // Mettre à jour l'URL de l'image
     const updateImageUrl = (value) => {
         setImagePreview(value);
         setEditedPokemon(prev => ({
@@ -85,7 +82,6 @@ const usePokemonEditor = (pokemon, params, setPokemonData, navigate) => {
         }));
     };
 
-    // Ajouter un type
     const addType = (newType) => {
         if (newType && !editedPokemon.type.includes(newType)) {
             setEditedPokemon(prev => ({
@@ -95,33 +91,30 @@ const usePokemonEditor = (pokemon, params, setPokemonData, navigate) => {
         }
     };
 
-    // Supprimer un type
     const removeType = (typeToRemove) => {
         if (editedPokemon.type.length > 1) {
             setEditedPokemon(prev => ({
                 ...prev,
-                type: prev.type.filter(t => t !== typeToRemove)
+                type: prev.type.filter(tt => tt !== typeToRemove)
             }));
         }
     };
 
-    // Sauvegarder les modifications
     const saveChanges = async () => {
         setIsSaving(true);
         setError(null);
 
         try {
-            const currentLang = params.lang || 'english';
             const updateData = {
                 type: editedPokemon.type,
                 base: editedPokemon.base,
                 image: editedPokemon.image,
                 name: {
-                    [currentLang]: editedPokemon.name
+                    [lang]: editedPokemon.name
                 }
             };
 
-            const response = await fetch(`http://localhost:3000/pokemons/${params.id}?lang=${currentLang}`, {
+            const response = await fetch(`http://localhost:3000/pokemons/${params.id}?lang=${lang}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -131,15 +124,15 @@ const usePokemonEditor = (pokemon, params, setPokemonData, navigate) => {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.error || 'Erreur lors de la sauvegarde');
+                throw new Error(errorData.error || t(lang, "saveErrorDefault"));
             }
 
             const data = await response.json();
-            
+
             if (setPokemonData) {
                 setPokemonData(data.pokemon);
             }
-            
+
             setIsEditing(false);
             setEditedPokemon(null);
             setImagePreview(null);
@@ -150,9 +143,9 @@ const usePokemonEditor = (pokemon, params, setPokemonData, navigate) => {
         }
     };
 
-    // Supprimer le Pokémon
     const deletePokemon = async () => {
-        if (!window.confirm(`Êtes-vous sûr de vouloir supprimer ${pokemon.name} ?\nCette action est irréversible.`)) {
+        const displayName = getLocalizedName(pokemon.name, lang);
+        if (!window.confirm(t(lang, "confirmDelete", displayName))) {
             return;
         }
 
@@ -162,7 +155,7 @@ const usePokemonEditor = (pokemon, params, setPokemonData, navigate) => {
             });
 
             if (!response.ok) {
-                throw new Error('Erreur lors de la suppression');
+                throw new Error(t(lang, "deleteErrorDefault"));
             }
 
             navigate('/');

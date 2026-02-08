@@ -4,6 +4,7 @@ import PageList from "../pageList";
 import FilterBar from "../filterBar";
 import { Link } from "react-router";
 import "./index.css";
+import { t } from "../../i18n/ui.js";
 
 const PokeList = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -110,7 +111,7 @@ const PokeList = () => {
     setPage(newPage);
   }, []);
 
-  if (loading) return <p className="loading">⚡ Chargement des Pokémon...</p>;
+  if (loading) return <p className="loading">{t(language, "loadingPokemon")}</p>;
 
   return (
     <div className="poke-container">
@@ -126,24 +127,24 @@ const PokeList = () => {
           onLanguageChange={handleLanguageChange}
         />
         
-        <PageList
-          pagination={pagination}
+        <PageList pagination={pagination}
           onPageChange={handlePageChange}
+          language={language}
         />
       </div>
 
       <ul className="poke-list">
         {pokemons.map((pokemon) => (
-          <Link key={pokemon.id} to={`${'http://localhost:5173/pokemons/' + language + '/' + pokemon.id}`}>
-            <PokeCard pokemon={pokemon} />
+          <Link key={pokemon.id} to={`/pokemons/${language}/${pokemon.id}`}>
+            <PokeCard pokemon={pokemon} language={language} />
           </Link>
         ))}
       </ul>
 
-      <PageList
-        pagination={pagination}
-        onPageChange={handlePageChange}
-      />
+      <PageList pagination={pagination}
+          onPageChange={handlePageChange}
+          language={language}
+        />
     </div>
   );
 };

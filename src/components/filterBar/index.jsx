@@ -2,10 +2,12 @@ import "./index.css";
 import LangOption from "../langOption";
 import FilterOption from "../filterOption";
 import SortOption from "../sortOption";
+import { useNavigate } from "react-router";
 
     const TRANSLATIONS = {
         french: {
             language: "🌍 Langue",
+            create: "➕ Créer un Pokémon",
             filters: "🔍 Filtres",
             namePlaceholder: "Nom du Pokémon...",
             allTypes: "Tous les types",
@@ -42,6 +44,7 @@ import SortOption from "../sortOption";
         },
         english: {
             language: "🌍 Language",
+            create: "➕ Create Pokémon",
             filters: "🔍 Filters",
             namePlaceholder: "Pokémon name...",
             allTypes: "All types",
@@ -78,6 +81,7 @@ import SortOption from "../sortOption";
         },
         japanese: {
             language: "🌍 言語",
+            create: "➕ ポケモンを作成",
             filters: "🔍 フィルター",
             namePlaceholder: "ポケモンの名前...",
             allTypes: "すべてのタイプ",
@@ -114,6 +118,7 @@ import SortOption from "../sortOption";
         },
         chinese: {
             language: "🌍 语言",
+            create: "➕ 创建宝可梦",
             filters: "🔍 筛选",
             namePlaceholder: "宝可梦名称...",
             allTypes: "所有属性",
@@ -161,6 +166,8 @@ const FilterBar = ({
     onLanguageChange 
 }) => {
 
+    const navigate = useNavigate();
+
     const t = TRANSLATIONS[language] || TRANSLATIONS.french;
 
     return (
@@ -168,6 +175,14 @@ const FilterBar = ({
             <h3>{t.language}</h3>
         
             <LangOption language={language} onLanguageChange={onLanguageChange} />
+
+            <button
+                type="button"
+                className="create-btn"
+                onClick={() => navigate(`/pokemons/${language}/create`)}
+            >
+                {t.create}
+            </button>
 
             <FilterOption filters={filters} onFilterChange={onFilterChange} onApplyFilters={onApplyFilters} t={t} />
 

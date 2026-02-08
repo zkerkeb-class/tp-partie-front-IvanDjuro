@@ -1,9 +1,10 @@
 import "./index.css";
+import { t } from "../../i18n/ui.js";
 
-const TypeEditor = ({ types, allTypes, onAddType, onRemoveType }) => {
+const TypeEditor = ({ language = "french", types, allTypes, onAddType, onRemoveType }) => {
     return (
         <div className="edit-section">
-            <h3>🏷️ Types</h3>
+            <h3>{t(language, "typeSection")}</h3>
             <div className="types-edit-container">
                 {types.map(type => (
                     <div key={type} className="type-tag">
@@ -12,14 +13,14 @@ const TypeEditor = ({ types, allTypes, onAddType, onRemoveType }) => {
                             onClick={() => onRemoveType(type)}
                             className="type-remove"
                             disabled={types.length === 1}
-                            title="Supprimer ce type"
+                            title={t(language, "removeTypeTitle")}
                         >
                             ✖
                         </button>
                     </div>
                 ))}
             </div>
-            
+
             {types.length < 2 && (
                 <select 
                     onChange={(e) => {
@@ -28,9 +29,9 @@ const TypeEditor = ({ types, allTypes, onAddType, onRemoveType }) => {
                     }}
                     className="type-select-modern"
                 >
-                    <option value="">+ Ajouter un type</option>
+                    <option value="">{t(language, "addType")}</option>
                     {allTypes
-                        .filter(t => !types.includes(t))
+                        .filter(tt => !types.includes(tt))
                         .map(type => (
                             <option key={type} value={type}>{type}</option>
                         ))

@@ -1,10 +1,11 @@
 import "./index.css";
+import { t } from "../../i18n/ui.js";
 
-const CryEditor = ({ cryUrl, onCryUpload, onCryUrlChange }) => {
+const CryEditor = ({ language = "french", cryUrl, onCryUpload, onCryUrlChange }) => {
     return (
         <div className="edit-section">
-            <h3>🔊 Cri du Pokémon (optionnel)</h3>
-            
+            <h3>{t(language, "crySection")}</h3>
+
             <div className="audio-upload-zone">
                 <input
                     type="file"
@@ -14,9 +15,9 @@ const CryEditor = ({ cryUrl, onCryUpload, onCryUrlChange }) => {
                     id="cry-upload"
                 />
                 <label htmlFor="cry-upload" className="file-label">
-                    📤 Uploader un fichier audio
+                    {t(language, "uploadAudio")}
                 </label>
-                <span className="file-hint">ou</span>
+                <span className="file-hint">{t(language, "or")}</span>
             </div>
 
             <input
@@ -24,13 +25,13 @@ const CryEditor = ({ cryUrl, onCryUpload, onCryUrlChange }) => {
                 value={cryUrl}
                 onChange={(e) => onCryUrlChange(e.target.value)}
                 className="edit-input-large"
-                placeholder="URL du fichier audio (optionnel, un cri par défaut sera utilisé)"
+                placeholder={t(language, "cryUrlPlaceholder")}
             />
 
             {cryUrl && (
                 <div className="audio-preview">
                     <audio controls src={cryUrl} className="audio-player">
-                        Votre navigateur ne supporte pas l'élément audio.
+                        {t(language, "audioNotSupported")}
                     </audio>
                 </div>
             )}

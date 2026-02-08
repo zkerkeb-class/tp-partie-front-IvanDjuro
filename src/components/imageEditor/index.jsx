@@ -1,10 +1,11 @@
 import "./index.css";
+import { t } from "../../i18n/ui.js";
 
-const ImageEditor = ({ imageUrl, onImageUpload, onImageUrlChange }) => {
+const ImageEditor = ({ language = "french", imageUrl, onImageUpload, onImageUrlChange }) => {
     return (
         <div className="edit-section">
-            <h3>🖼️ Image</h3>
-            
+            <h3>{t(language, "imageSection")}</h3>
+
             <div className="image-upload-zone">
                 <input
                     type="file"
@@ -14,9 +15,9 @@ const ImageEditor = ({ imageUrl, onImageUpload, onImageUrlChange }) => {
                     id="image-upload"
                 />
                 <label htmlFor="image-upload" className="file-label">
-                    📤 Uploader une image
+                    {t(language, "uploadImage")}
                 </label>
-                <span className="file-hint">ou</span>
+                <span className="file-hint">{t(language, "or")}</span>
             </div>
 
             <input
@@ -24,7 +25,7 @@ const ImageEditor = ({ imageUrl, onImageUpload, onImageUrlChange }) => {
                 value={imageUrl}
                 onChange={(e) => onImageUrlChange(e.target.value)}
                 className="edit-input-large"
-                placeholder="URL de l'image"
+                placeholder={t(language, "imageUrlPlaceholder")}
             />
         </div>
     );

@@ -19,7 +19,7 @@ const usePokemon = (id, lang = "english") => {
                 }).finally(() => {
                     setLoading(false);
                 });
-        }, [id]);
+        }, [id, lang]);
 
         
     /**

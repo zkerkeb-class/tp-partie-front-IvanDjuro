@@ -1,9 +1,10 @@
 import "./index.css";
+import { t } from "../../i18n/ui.js";
 
-const StatsEditor = ({ stats, onStatChange }) => {
+const StatsEditor = ({ language = "french", stats, onStatChange }) => {
     return (
         <div className="edit-section">
-            <h3>📊 Statistiques</h3>
+            <h3>{t(language, "statsSection")}</h3>
             <div className="stats-edit-grid">
                 {Object.entries(stats).map(([stat, value]) => (
                     <div key={stat} className="stat-edit-row">

@@ -1,12 +1,13 @@
 import "./index.css";
+import { t } from "../../i18n/ui.js";
 
-const CreateNameFields = ({ names, onNameChange }) => {
+const CreateNameFields = ({ language = "french", names, onNameChange }) => {
     return (
         <div className="edit-section">
-            <h3>📝 Noms (toutes les langues obligatoires)</h3>
+            <h3>{t(language, "createNamesTitle")}</h3>
             <div className="name-fields-grid">
                 <div className="name-field">
-                    <label>🇬🇧 Anglais *</label>
+                    <label>{t(language, "english")} *</label>
                     <input
                         type="text"
                         value={names.english}
@@ -18,7 +19,7 @@ const CreateNameFields = ({ names, onNameChange }) => {
                 </div>
 
                 <div className="name-field">
-                    <label>🇫🇷 Français *</label>
+                    <label>{t(language, "frenchLabel")} *</label>
                     <input
                         type="text"
                         value={names.french}
@@ -30,7 +31,7 @@ const CreateNameFields = ({ names, onNameChange }) => {
                 </div>
 
                 <div className="name-field">
-                    <label>🇯🇵 Japonais *</label>
+                    <label>{t(language, "japanese")} *</label>
                     <input
                         type="text"
                         value={names.japanese}
@@ -42,7 +43,7 @@ const CreateNameFields = ({ names, onNameChange }) => {
                 </div>
 
                 <div className="name-field">
-                    <label>🇨🇳 Chinois *</label>
+                    <label>{t(language, "chinese")} *</label>
                     <input
                         type="text"
                         value={names.chinese}
@@ -53,7 +54,7 @@ const CreateNameFields = ({ names, onNameChange }) => {
                     />
                 </div>
             </div>
-            <p className="field-hint">* Tous les champs sont obligatoires</p>
+            <p className="field-hint">{t(language, "requiredHint")}</p>
         </div>
     );
 };
