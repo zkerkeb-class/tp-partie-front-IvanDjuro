@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import PokeCard from "../pokeCard";
 import PageList from "../pageList";
 import FilterBar from "../filterBar";
+import { Link } from "react-router";
 import "./index.css";
 
 const PokeList = () => {
@@ -54,7 +55,7 @@ const PokeList = () => {
         if (appliedFilters.minHP) params.append('minHP', appliedFilters.minHP);
         if (appliedFilters.maxHP) params.append('maxHP', appliedFilters.maxHP);
         
-        const res = await fetch(`http://localhost:3000/?${params}`, {
+        const res = await fetch(`http://localhost:3000/pokemons?${params}`, {
           signal: abortControllerRef.current.signal
         });
         const data = await res.json();
@@ -133,7 +134,9 @@ const PokeList = () => {
 
       <ul className="poke-list">
         {pokemons.map((pokemon) => (
-          <PokeCard key={pokemon.id} pokemon={pokemon} />
+          <Link key={pokemon.id} to={`${'http://localhost:5173/pokemons/' + language + '/' + pokemon.id}`}>
+            <PokeCard pokemon={pokemon} />
+          </Link>
         ))}
       </ul>
 
