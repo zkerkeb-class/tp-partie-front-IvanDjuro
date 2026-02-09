@@ -27,7 +27,7 @@ const CreatePokemon = () => {
         resetForm
     } = usePokemonCreator(navigate, lang);
 
-    const goBack = () => navigate(-1);
+    const goBack = () => navigate("/pokemons");
 
     const allTypes = [
         "Normal", "Fire", "Water", "Electric", "Grass", "Ice", 

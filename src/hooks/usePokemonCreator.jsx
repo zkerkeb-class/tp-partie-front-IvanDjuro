@@ -201,7 +201,7 @@ const usePokemonCreator = (navigate, language = "french") => {
                 throw new Error(errorMessage);
             }
 
-            navigate('/');
+            navigate('/pokemons');
         } catch (err) {
             setError(err.message);
         } finally {

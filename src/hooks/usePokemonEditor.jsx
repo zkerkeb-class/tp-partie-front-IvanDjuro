@@ -158,7 +158,7 @@ const usePokemonEditor = (pokemon, params, setPokemonData, navigate) => {
                 throw new Error(t(lang, "deleteErrorDefault"));
             }
 
-            navigate('/');
+            navigate('/pokemons');
         } catch (err) {
             setError(err.message);
         }
