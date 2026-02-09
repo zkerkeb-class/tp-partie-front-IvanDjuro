@@ -1,9 +1,16 @@
-
 # Projet Web React
 
 ## 🎥 Aperçu de l’interface
 
 [https://youtu.be/90ds04nyc9M](https://youtu.be/90ds04nyc9M)
+
+## 🗄️ MongoDB (à lancer en premier)
+
+```bash
+git clone https://github.com/IvanDjuro/mongo-pokemon.git
+cd mongo-pokemon
+docker compose up -d
+```
 
 ## 🚀 Installation
 
