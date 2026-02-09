@@ -3,6 +3,7 @@ import LangOption from "../langOption";
 import FilterOption from "../filterOption";
 import SortOption from "../sortOption";
 import { useNavigate } from "react-router";
+import useLogin from '../../hooks/useLogin'
 
     const TRANSLATIONS = {
         french: {
@@ -165,10 +166,14 @@ const FilterBar = ({
     language, 
     onLanguageChange 
 }) => {
-
+    const { logout, user } = useLogin();
     const navigate = useNavigate();
 
     const t = TRANSLATIONS[language] || TRANSLATIONS.french;
+    const handleLogout = () => {
+        logout();
+        navigate('/');
+    };
 
     return (
         <div className="filter-bar">
@@ -184,6 +189,10 @@ const FilterBar = ({
                 {t.create}
             </button>
 
+            <div className="deco-panel">
+                <span>Connecté en tant que : {user?.username}</span>
+                <button className="deco-button" onClick={handleLogout}>Se déconnecter</button>
+            </div>
             <FilterOption filters={filters} onFilterChange={onFilterChange} onApplyFilters={onApplyFilters} t={t} />
 
             <SortOption sortBy={sortBy} sortOrder={sortOrder} onSortChange={onSortChange} t={t} />
