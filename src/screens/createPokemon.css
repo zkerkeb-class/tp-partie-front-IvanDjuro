@@ -1,0 +1,77 @@
+/* ===========================
+   PAGE CREATE POKEMON - LAYOUT 1/3 - 2/3
+   =========================== */
+
+.create-pokemon-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px;
+    min-height: 100vh;
+}
+
+/* ===========================
+   LAYOUT PRINCIPAL : 1/3 - 2/3
+   =========================== */
+
+.details-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* GAUCHE : Carte Pokémon (1/3) */
+.card-preview-section {
+    position: sticky;
+    top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.preview-hint {
+    background: rgba(0, 123, 255, 0.2);
+    backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(0, 123, 255, 0.3);
+    border-radius: 12px;
+    padding: 12px 20px;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+}
+
+/* DROITE : Formulaire de création (2/3) */
+.edit-panel-section {
+    min-height: 600px;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+@media (max-width: 1200px) {
+    .details-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .card-preview-section {
+        position: relative;
+        top: 0;
+    }
+
+    .card-preview-section .poke-card {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .create-pokemon-page {
+        padding: 15px;
+    }
+}
