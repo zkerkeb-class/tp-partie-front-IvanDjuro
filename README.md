@@ -20,3 +20,14 @@ cd tp-partie-front-IvanDjuro
 npm install
 npm run dev
 ```
+
+## Fonctionnalités ajoutées
+
+* Page de connexion
+* Mouvement de la carte au survol
+* Mouvement des statistiques au survol
+* Tri (ID, nom, statistiques) en ordre croissant/décroissant
+* Filtre (nom, type, PV) cummulable
+* Cri (Shift + clic droit sur une carte)
+* Création de carte → modification en temps réel
+* Changement de langue (FR, EN, JP, CH)
