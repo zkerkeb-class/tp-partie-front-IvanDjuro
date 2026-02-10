@@ -4,13 +4,10 @@
 
 [https://youtu.be/90ds04nyc9M](https://youtu.be/90ds04nyc9M)
 
-## 🗄️ MongoDB (à lancer en premier)
+## 🗄️ MongoDB
 
-```bash
-git clone https://github.com/IvanDjuro/mongo-pokemon.git
-cd mongo-pokemon
-docker compose up -d
-```
+[https://github.com/IvanDjuro/mongo-pokemon.git](https://github.com/IvanDjuro/mongo-pokemon.git)
+
 
 ## 🚀 Installation
 
